@@ -9,6 +9,10 @@ app_color = "blue"
 app_email = "christophernjogu@gmail.com"
 app_license = "MIT"
 
+#fixtures
+fixtures = ['Client Script','Custom Field','Property Setter','Account','Budget','Budget Account']
+
+
 # Includes in <head>
 # ------------------
 
@@ -31,7 +35,10 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+	"Budget" : "public/js/doctype/budget.js",
+	"Budget Adjustment Voucher" : "public/js/doctype/budget_adjustment_voucher.js"
+	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -172,4 +179,5 @@ user_data_fields = [
 # auth_hooks = [
 # 	"budget_adjustment.auth.validate"
 # ]
+
 

@@ -1,0 +1,86 @@
+{
+ "actions": [],
+ "creation": "2021-08-10 10:20:40.103374",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "amended_from",
+  "account",
+  "opening_budget",
+  "free_balance",
+  "adjusted_amount",
+  "closing_balance",
+  "column_break_7",
+  "reason_for_adjustment"
+ ],
+ "fields": [
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Budget Adjustment Voucher",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Account",
+   "options": "Account"
+  },
+  {
+   "columns": 2,
+   "fieldname": "opening_budget",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Opening Budget"
+  },
+  {
+   "columns": 2,
+   "fieldname": "free_balance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Adjustable Amount",
+   "non_negative": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "adjusted_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Adjusted Amount"
+  },
+  {
+   "columns": 2,
+   "fieldname": "closing_balance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Closing Balance"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reason_for_adjustment",
+   "fieldtype": "Text Editor",
+   "label": "Reason for Adjustment"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2021-08-11 19:13:42.913032",
+ "modified_by": "Administrator",
+ "module": "Budget Adjustment",
+ "name": "Budget Adjustment Items",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
