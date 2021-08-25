@@ -1,37 +1,20 @@
 {
  "actions": [],
- "creation": "2021-08-10 10:20:40.103374",
+ "creation": "2021-08-19 17:31:25.908920",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "amended_from",
   "account",
   "opening_budget",
   "adjustable_amount",
   "adjusted_amount",
   "closing_balance",
+  "account_to_adjust",
   "column_break_7",
   "reason_for_adjustment"
  ],
  "fields": [
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Budget Adjustment Voucher",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
-   "columns": 2,
-   "fieldname": "account",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Account",
-   "options": "Account"
-  },
   {
    "columns": 2,
    "fieldname": "opening_budget",
@@ -41,10 +24,18 @@
   },
   {
    "columns": 2,
+   "fieldname": "adjustable_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Used Amount",
+   "non_negative": 1
+  },
+  {
+   "columns": 2,
    "fieldname": "adjusted_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Adjusted Amount"
+   "label": "Amount to Adjust"
   },
   {
    "columns": 2,
@@ -64,20 +55,28 @@
   },
   {
    "columns": 2,
-   "fieldname": "adjustable_amount",
-   "fieldtype": "Currency",
+   "fieldname": "account",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Used Amount",
-   "non_negative": 1
+   "label": "Account",
+   "options": "Account"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "account_to_adjust",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Account to Adjust",
+   "options": "Account"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-08-19 03:49:57.617434",
+ "modified": "2021-08-23 01:05:53.844445",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
- "name": "Budget Adjustment Items",
+ "name": "Budget Adjustment Account Items",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

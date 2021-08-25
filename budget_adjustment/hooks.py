@@ -10,8 +10,35 @@ app_email = "christophernjogu@gmail.com"
 app_license = "MIT"
 
 #fixtures
-fixtures = ['Client Script','Custom Field','Property Setter','Account','Budget','Budget Account']
 
+fixtures = [
+{
+	"doctype": "Custom Field",
+	"filters": [["name", "in", (
+		"Account-n1",
+		"Account-n2",
+		"Account-n3",
+		"Account-account_numbers_",
+		"Account-column_break_23",
+		"Account-column_break_25",
+		"Budget Account-number_of_changes",
+		"Budget Account-used_amount",
+		"Budget Account-free_balance"
+
+	)]]
+},
+	{
+	"doctype": "Property Setter",
+	"filters": [["name", "in", (
+		"Account-n1",
+		"Account-n2",
+		"Account-n3",
+		"Account-account_numbers_",
+		"Account-column_break_23",
+		"Account-column_break_25"
+	)]]
+},
+]
 
 # Includes in <head>
 # ------------------
@@ -103,6 +130,14 @@ doctype_js = {
 # 		"on_trash": "method"
 #	}
 # }
+
+doc_events = {
+	"Account": {
+		"on_update": "budget_adjustment.budget_adjustment.doctype.account.events.on_update",
+		"before_submit": "budget_adjustment.budget_adjustment.doctype.account.events.before_submit",
+		"validate": "budget_adjustment.budget_adjustment.doctype.account.events.validate"
+	}
+}
 
 # Scheduled Tasks
 # ---------------

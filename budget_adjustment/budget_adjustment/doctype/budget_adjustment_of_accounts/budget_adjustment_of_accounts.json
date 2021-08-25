@@ -1,58 +1,71 @@
 {
  "actions": [],
  "autoname": "format:{budget}-Voucher-{####}",
- "creation": "2021-08-07 16:20:32.233619",
+ "creation": "2021-08-19 17:27:53.907780",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "amended_from",
-  "budget",
+  "company",
+  "column_break_2",
+  "account_group",
   "section_break_5",
   "budget_adjustment",
-  "section_break_7"
+  "section_break_7",
+  "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Budget Adjustment Voucher",
-   "print_hide": 1,
-   "read_only": 1
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "budget_adjustment",
    "fieldtype": "Table",
    "label": "Budget Adjustment",
-   "options": "Budget Adjustment Items"
+   "options": "Budget Adjustment Account Items"
   },
   {
    "fieldname": "section_break_7",
    "fieldtype": "Section Break"
   },
   {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Budget Adjustment Of Accounts",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
    "columns": 10,
-   "fieldname": "budget",
+   "fieldname": "account_group",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Budget",
-   "options": "Budget",
+   "label": "Account Group",
+   "options": "Account",
    "reqd": 1
   },
   {
-   "fieldname": "section_break_5",
-   "fieldtype": "Section Break"
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-08-19 03:33:55.471966",
+ "modified": "2021-08-26 01:50:57.931302",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
- "name": "Budget Adjustment Voucher",
+ "name": "Budget Adjustment Of Accounts",
  "owner": "Administrator",
  "permissions": [
   {
