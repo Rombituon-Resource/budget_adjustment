@@ -37,7 +37,8 @@
    "fieldname": "adjusted_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Adjustment Amount "
+   "label": "Adjustment Amount ",
+   "reqd": 1
   },
   {
    "columns": 2,
@@ -54,7 +55,8 @@
   {
    "fieldname": "reason_for_adjustment",
    "fieldtype": "Text Editor",
-   "label": "Reason for Adjustment"
+   "label": "Reason for Adjustment",
+   "reqd": 1
   },
   {
    "columns": 2,
@@ -70,13 +72,14 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Account to Adjust",
-   "options": "Account"
+   "options": "Account",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-08-31 02:25:40.073186",
+ "modified": "2021-09-01 04:31:55.898412",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Budget Adjustment Account Items",
