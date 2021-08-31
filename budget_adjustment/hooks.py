@@ -38,6 +38,12 @@ fixtures = [
 		"Account-column_break_25"
 	)]]
 },
+	{
+		"doctype": "Workspace",
+		"filters": [["name", "in", (
+			"Budget Adjustment"
+		)]]
+	},
 ]
 
 # Includes in <head>
@@ -63,8 +69,8 @@ fixtures = [
 
 # include js in doctype views
 doctype_js = {
-	"Budget" : "public/js/doctype/budget.js",
-	"Budget Adjustment Voucher" : "public/js/doctype/budget_adjustment_voucher.js"
+	"Budget": "public/js/doctype/budget.js",
+	"Budget Adjustment Voucher": "public/js/doctype/budget_adjustment_voucher.js"
 	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -136,6 +142,10 @@ doc_events = {
 		"on_update": "budget_adjustment.budget_adjustment.doctype.account.events.on_update",
 		"before_submit": "budget_adjustment.budget_adjustment.doctype.account.events.before_submit",
 		"validate": "budget_adjustment.budget_adjustment.doctype.account.events.validate"
+	},
+	"Budget": {
+		"on_change": "budget_adjustment.budget_adjustment.doctype.budget.events.on_change",
+		"on_load": "budget_adjustment.budget_adjustment.doctype.budget.events.on_load"
 	}
 }
 

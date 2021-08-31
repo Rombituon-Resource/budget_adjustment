@@ -20,29 +20,32 @@
    "fieldname": "opening_budget",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Opening Budget"
+   "label": "Approved Amount",
+   "read_only": 1
   },
   {
    "columns": 2,
    "fieldname": "adjustable_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Used Amount",
-   "non_negative": 1
+   "label": "Total Expense",
+   "non_negative": 1,
+   "read_only": 1
   },
   {
    "columns": 2,
    "fieldname": "adjusted_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Amount to Adjust"
+   "label": "Adjustment Amount "
   },
   {
    "columns": 2,
    "fieldname": "closing_balance",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Closing Balance"
+   "label": "Remaining Amount",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_7",
@@ -73,7 +76,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-08-23 01:05:53.844445",
+ "modified": "2021-08-31 02:25:40.073186",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Budget Adjustment Account Items",
