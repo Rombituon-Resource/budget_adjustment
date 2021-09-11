@@ -38,3 +38,12 @@ frappe.ui.form.on('Budget', {
 
 }) //end frappe.ui.form.on
 
+frappe.ui.form.on('Budget Account', {
+    budget_amount: function (frm,cdt,cdn){
+        var items = locals[cdt][cdn]
+
+        frappe.model.set_value(items.doctype, items.name, "used_amount", 0);
+        frappe.model.set_value(items.doctype, items.name, "number_of_changes", 0);
+        frappe.model.set_value(items.doctype, items.name, "free_balance", (items.budget_amount - items.used_amount));
+    },
+})

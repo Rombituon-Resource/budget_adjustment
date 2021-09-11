@@ -11,10 +11,6 @@ def on_change(self, method):
         frappe.db.set_value(account.doctype, account.name, "free_balance",
                             (account.budget_amount - account.used_amount),
                             update_modified=False)
-    # frappe.publish_realtime("free_balance", {"doctype": "Budget "})
-    #
-    # frappe.clear_cache(doctype='Budget')
-    # self.reload()
     self.clear_cache()
 
 

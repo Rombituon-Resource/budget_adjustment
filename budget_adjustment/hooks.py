@@ -23,7 +23,8 @@ fixtures = [
 		"Account-column_break_25",
 		"Budget Account-number_of_changes",
 		"Budget Account-used_amount",
-		"Budget Account-free_balance"
+		"Budget Account-free_balance",
+		"Budget-budget_name"
 
 	)]]
 },
@@ -69,8 +70,7 @@ fixtures = [
 
 # include js in doctype views
 doctype_js = {
-	"Budget": "public/js/doctype/budget.js",
-	"Budget Adjustment Voucher": "public/js/doctype/budget_adjustment_voucher.js"
+	"Budget": "public/js/doctype/budget.js"
 	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}

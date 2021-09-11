@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "autoname": "field:cash_receipt_name",
+ "creation": "2021-09-11 16:07:20.804472",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "cash_receipt_name",
+  "company",
+  "account_group",
+  "cost_center",
+  "fiscal_year",
+  "section_break_5",
+  "cash_receipts",
+  "section_break_7",
+  "column_break_8",
+  "column_break_9",
+  "total",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "columns": 10,
+   "fieldname": "account_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Account Group",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cash_receipts",
+   "fieldtype": "Table",
+   "label": "Cash Receipts",
+   "options": "Cash Receipt Item"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Cash Receipt",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "cash_receipt_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Cash Receipt Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "label": "Total",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fiscal_year",
+   "fieldtype": "Link",
+   "label": "Fiscal Year",
+   "options": "Fiscal Year",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-09-11 19:02:27.914644",
+ "modified_by": "Administrator",
+ "module": "Budget Adjustment",
+ "name": "Cash Receipt",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "cash_receipt_name,company,account_group",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "cash_receipt_name",
+ "track_changes": 1
+}

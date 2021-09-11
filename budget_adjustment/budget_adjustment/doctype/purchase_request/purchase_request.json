@@ -1,0 +1,85 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:purchase_request_name",
+ "creation": "2021-09-11 20:56:24.968357",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "purchase_request_name",
+  "column_break_2",
+  "date",
+  "section_break_4",
+  "purchase_request_internal",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "purchase_request_internal",
+   "fieldtype": "Table",
+   "label": "Purchase Request (Internal)",
+   "options": "Purchase Request Items"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Purchase Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "purchase_request_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Purchase Request Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-09-11 21:09:16.298047",
+ "modified_by": "Administrator",
+ "module": "Budget Adjustment",
+ "name": "Purchase Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "purchase_request_name",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "purchase_request_name",
+ "track_changes": 1
+}
