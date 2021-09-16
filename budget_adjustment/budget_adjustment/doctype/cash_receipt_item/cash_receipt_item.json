@@ -8,11 +8,13 @@
   "date_of_receipt",
   "received_account",
   "amount_received",
+  "previous_budget_amount",
   "column_break_7",
   "description"
  ],
  "fields": [
   {
+   "default": "Today",
    "fieldname": "date_of_receipt",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -50,12 +52,22 @@
    "label": "Description",
    "reqd": 1,
    "translatable": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "previous_budget_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Previous Budget Amount",
+   "non_negative": 1,
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-09-11 16:10:32.559220",
+ "modified": "2021-09-16 08:44:40.862656",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Cash Receipt Item",
