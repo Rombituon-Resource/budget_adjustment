@@ -2,8 +2,6 @@ let budget_name,bal_account,adjust_amount,all_bal,account_for_link,used_amount;
 frappe.ui.form.on('Budget Adjustment Of Accounts', {
 
     onload: function(frm) {
-        // cur_frm.add_fetch('customer', 'local_tax_no', 'local_tax_no');
-
 		frm.set_query("account_group", function() {
 			return {
 				filters: {

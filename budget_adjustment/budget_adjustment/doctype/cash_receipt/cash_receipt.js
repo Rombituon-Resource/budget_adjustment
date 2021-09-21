@@ -38,7 +38,8 @@ frappe.ui.form.on('Cash Receipt', {
 			    return {
 				    filters: {
 					    company: frm.doc.company,
-						cost_center: frm.doc.cost_center
+						cost_center: frm.doc.cost_center,
+						docstatus:1
 				    }
 			    };
 		    });
@@ -46,7 +47,7 @@ frappe.ui.form.on('Cash Receipt', {
 
 			frm.set_query("received_account", "cash_receipts", function() {
 				return {
-                    query: "budget_adjustment.controllers.queries.get_accounts_child",
+                    query: "budget_adjustment.controllers.queries.get_cash_received_accounts",
                     filters: {
                         "company": frm.doc.company,
                         "account": frm.doc.account_group
