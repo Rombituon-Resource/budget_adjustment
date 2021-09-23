@@ -40,9 +40,26 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Budget Reports",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Budget Report Accounts (Adjustment)",
+   "link_to": "Budget Report Accounts",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2021-09-16 08:39:22.175980",
+ "modified": "2021-09-24 05:12:31.933291",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Budget Adjustment",
