@@ -161,6 +161,7 @@ def prepare_data(accounts, filters, year_start_date, year_end_date, fiscal_year)
 
         row = frappe._dict({
             "account": _(parent.parent_account),
+            "account_name": _(parent.parent_account),
             "indent": 0,
             "allocated_amount": _(budget),
             "expenses": _(expenses),
@@ -174,12 +175,8 @@ def prepare_data(accounts, filters, year_start_date, year_end_date, fiscal_year)
         for child in children:
             has_value = False
             total = 0
-
-            # frappe.throw("{0}".format(get_remarks(child.name)))
-
             row = frappe._dict({
                 "account": _(child.name),
-                # "parent_account": _(child.parent_account) if child.parent_account else '',
                 "indent": 1,
                 "allocated_amount": child.budget_amount,
                 "account_name": _(child.account_name),
@@ -204,8 +201,10 @@ def get_expenses_parents(company, parent, year_start_date, year_end_date):
                              where account=%s and posting_date >= %s and posting_date <= %s and is_cancelled = 0
 
                         ''', (child.name, year_start_date, year_end_date), as_dict=1)
-
-        totals += accounts[0].balance
+        if accounts:
+            totals += accounts[0].balance
+        else:
+            totals += 0
 
     return totals
 
@@ -232,8 +231,10 @@ def get_budget_parents(company, parent, fiscal_year):
                 select ba.budget_amount,b.fiscal_year from `tabBudget Account` ba, `tabBudget` b 
                     where ba.parent = b.name and b.fiscal_year=%s and ba.account=%s;
             ''', (fiscal_year, child.name), as_dict=1)
-
-        totals += accounts[0].budget_amount
+        if accounts:
+            totals += accounts[0].budget_amount
+        else:
+            totals += 0
 
     return totals
 

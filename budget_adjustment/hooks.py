@@ -23,8 +23,7 @@ fixtures = [
 		"Account-column_break_25",
 		"Budget Account-number_of_changes",
 		"Budget Account-used_amount",
-		"Budget Account-free_balance",
-		"Budget-budget_name"
+		"Budget Account-free_balance"
 
 	)]]
 },
@@ -43,6 +42,12 @@ fixtures = [
 		"doctype": "Workspace",
 		"filters": [["name", "in", (
 			"Budget Adjustment"
+		)]]
+	},
+	{
+		"doctype": "Report",
+		"filters": [["name", "in", (
+			"Budget Report Accounts"
 		)]]
 	},
 ]

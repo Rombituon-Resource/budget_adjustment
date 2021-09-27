@@ -9,7 +9,7 @@ frappe.query_reports["Budget Report Accounts"] = {
 			"label": __("Fiscal Year"),
 			"fieldtype": "Link",
 			"options": "Fiscal Year",
-			"default": frappe.defaults.get_user_default("fiscal_year"),
+			// "default": frappe.defaults.get_user_default("fiscal_year"),
 			"reqd": 1
 		},
 		{
@@ -17,7 +17,7 @@ frappe.query_reports["Budget Report Accounts"] = {
 			"label": __("Company"),
 			"fieldtype": "Link",
 			"options": "Company",
-			"default": frappe.defaults.get_user_default("Company"),
+			// "default": frappe.defaults.get_user_default("Company"),
 			"reqd":1
 		},
 
