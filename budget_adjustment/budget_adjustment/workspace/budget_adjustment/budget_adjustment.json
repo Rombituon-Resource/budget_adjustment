@@ -1,7 +1,7 @@
 {
  "category": "Modules",
  "charts": [],
- "creation": "2021-08-31 02:55:05.327619",
+ "creation": "2021-09-27 21:33:11.401341",
  "developer_mode_only": 0,
  "disable_user_customization": 0,
  "docstatus": 0,
@@ -40,17 +40,9 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Budget Reports",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
   }
  ],
- "modified": "2021-09-24 05:12:31.933291",
+ "modified": "2021-09-27 22:11:20.653501",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Budget Adjustment",
@@ -75,6 +67,18 @@
    "label": "Purchase Request",
    "link_to": "Purchase Request",
    "type": "DocType"
+  },
+  {
+   "doc_view": "Report Builder",
+   "label": "Budget Report Consolidated",
+   "link_to": "Budget Report Accounts",
+   "type": "Report"
+  },
+  {
+   "doc_view": "List",
+   "label": "Budget Rep",
+   "link_to": "Budget Report Accounts",
+   "type": "Report"
   }
  ]
 }

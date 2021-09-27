@@ -211,8 +211,8 @@ def get_expenses_parents(company, parent, year_start_date, year_end_date):
 
 def get_accounts_parents(company):
     return frappe.db.sql("""
-        		 			 select ta.parent_account from `tabAccount` ta, `tabBudget Account` tb, `tabGL Entry` gl where ta.name = tb.account and ta.name = gl.account  and ta.company=%s and ta.root_type="Expense" group by ta.parent_account
-        		 			 """, (company), as_dict=True)
+        		 			  select ta.parent_account from `tabAccount` ta, `tabBudget Account` tb where ta.name = tb.account and ta.company=%s and ta.root_type="Expense" group by ta.parent_account
+                         """, (company), as_dict=True)
 
 
 def get_accounts_children(company, parent):
@@ -240,10 +240,14 @@ def get_budget_parents(company, parent, fiscal_year):
 
 
 def get_remarks(account):
-    return frappe.db.sql("""
+    remarks = frappe.db.sql("""
                             
                             select tb.reason_for_adjustment from `tabBudget Adjustment Account Items` tb 
                                 where tb.account =%s  order by creation desc limit 1;
 
     
                          """, account, as_dict=True)
+    if remarks:
+        return remarks[0].reason_for_adjustment
+    else:
+        return ""

@@ -9,13 +9,13 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2021-09-24 05:00:31.163914",
+ "modified": "2021-09-27 12:12:43.976440",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Budget Report Accounts",
  "owner": "Administrator",
  "prepared_report": 0,
- "ref_doctype": "Account",
+ "ref_doctype": "Budget Adjustment Of Accounts",
  "report_name": "Budget Report Accounts",
  "report_type": "Script Report",
  "roles": [
@@ -27,6 +27,9 @@
   },
   {
    "role": "Accounts User"
+  },
+  {
+   "role": "System Manager"
   }
  ]
 }

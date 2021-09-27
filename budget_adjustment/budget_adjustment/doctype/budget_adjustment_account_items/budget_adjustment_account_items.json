@@ -54,7 +54,7 @@
   },
   {
    "fieldname": "reason_for_adjustment",
-   "fieldtype": "Text Editor",
+   "fieldtype": "Long Text",
    "label": "Reason for Adjustment",
    "reqd": 1
   },
@@ -79,7 +79,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-09-01 04:31:55.898412",
+ "modified": "2021-09-27 11:54:59.345255",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Budget Adjustment Account Items",

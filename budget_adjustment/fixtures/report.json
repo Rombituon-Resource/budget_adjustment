@@ -11,7 +11,7 @@
   "javascript": null,
   "json": null,
   "letter_head": null,
-  "modified": "2021-09-24 05:00:31.163914",
+  "modified": "2021-09-27 12:12:43.976440",
   "module": "Budget Adjustment",
   "name": "Budget Report Accounts",
   "parent": null,
@@ -19,7 +19,7 @@
   "parenttype": null,
   "prepared_report": 0,
   "query": null,
-  "ref_doctype": "Account",
+  "ref_doctype": "Budget Adjustment Of Accounts",
   "reference_report": null,
   "report_name": "Budget Report Accounts",
   "report_script": null,
@@ -42,6 +42,12 @@
     "parentfield": "roles",
     "parenttype": "Report",
     "role": "Accounts User"
+   },
+   {
+    "parent": "Budget Report Accounts",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
    }
   ]
  }

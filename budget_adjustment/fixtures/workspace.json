@@ -63,7 +63,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2021-09-16 08:39:22.175980",
+  "modified": "2021-09-27 22:11:20.653501",
   "module": "Budget Adjustment",
   "name": "Budget Adjustment",
   "onboarding": null,
@@ -115,6 +115,34 @@
     "restrict_to_domain": null,
     "stats_filter": null,
     "type": "DocType"
+   },
+   {
+    "color": null,
+    "doc_view": "Report Builder",
+    "format": null,
+    "icon": null,
+    "label": "Budget Report Consolidated",
+    "link_to": "Budget Report Accounts",
+    "parent": "Budget Adjustment",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "Report"
+   },
+   {
+    "color": null,
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "label": "Budget Rep",
+    "link_to": "Budget Report Accounts",
+    "parent": "Budget Adjustment",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "Report"
    }
   ],
   "shortcuts_label": null
