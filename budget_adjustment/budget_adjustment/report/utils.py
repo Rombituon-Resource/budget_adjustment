@@ -14,68 +14,9 @@ from erpnext.accounts.utils import get_fiscal_year
 from frappe import _
 from frappe.utils import (flt, getdate, get_first_day, add_months, add_days, formatdate, cstr, cint)
 
-
-
-def execute(filters=None):
-    return get_columns(), get_data(filters)
-
-
-def get_data(filters):
-    fiscal_year = get_fiscal_year(filters.get('fiscal_year'))
-    year_start_date = fiscal_year.get('year_start_date').strftime("%Y-%m-%d")
-    year_end_date = fiscal_year.get('year_end_date').strftime("%Y-%m-%d")
-
-    if filters.get('company'):
-        accounts = get_accounts(filters.get('company'))
-        filtered_accounts, accounts_by_name, parent_children_map = filter_accounts(accounts)
-
-        # frappe.throw("{0}".format(accounts_by_name))
-        if not accounts:
-            return None
-        data = prepare_data(accounts, filters, year_start_date, year_end_date, fiscal_year)
-
-        return data
-
-
-def get_columns():
-    columns = [
-        {
-            'label': _('Account'),
-            'fieldname': 'account',
-            'fieldtype': 'Link',
-            'options': 'Account',
-            'width': 300
-        },
-        {
-            'label': _('Allocated Amount'),
-            'fieldname': 'allocated_amount',
-            'fieldtype': 'Currency',
-            'options': 'currency',
-            'width': 200
-        },
-        {
-            'label': _('Expenses'),
-            'fieldname': 'expenses',
-            'fieldtype': 'Currency',
-            'options': 'currency',
-            'width': 200
-        },
-        {
-            'label': _('Available Amount'),
-            'fieldname': 'available_amount',
-            'fieldtype': 'Currency',
-            'options': 'currency',
-            'width': 200
-        },
-        {
-            'label': _('Remarks'),
-            'fieldname': 'remarks',
-            'fieldtype': 'Text Editor',
-            'width': 200
-        }
-    ]
-
-    return columns
+from six import itervalues
+from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import get_accounting_dimensions, \
+    get_dimension_with_children
 
 
 def get_accounts(company):
@@ -225,7 +166,7 @@ def get_budget_parents(company, parent, fiscal_year):
     for child in children:
         accounts = frappe.db.sql(
             '''
-                            
+
                 select ba.budget_amount,b.fiscal_year from `tabBudget Account` ba, `tabBudget` b 
                     where ba.parent = b.name and b.fiscal_year=%s and ba.account=%s;
             ''', (fiscal_year, child.name), as_dict=1)
@@ -239,13 +180,73 @@ def get_budget_parents(company, parent, fiscal_year):
 
 def get_remarks(account):
     remarks = frappe.db.sql("""
-                            
+
                             select tb.reason_for_adjustment from `tabBudget Adjustment Account Items` tb 
                                 where tb.account =%s  order by creation desc limit 1;
 
-    
+
                          """, account, as_dict=True)
     if remarks:
         return remarks[0].reason_for_adjustment
     else:
         return ""
+
+
+def get_budget_accounts(budget):
+    budget_accounts = frappe.db.sql("""
+                                     select account,budget_amount 
+                                        from `tabBudget Account` 
+                                            where 
+                                            parent=%s;
+    
+                                    """, budget, as_dict=True)
+
+    return budget_accounts
+
+
+def prepare_budget_data(filters, year_start_date, year_end_date):
+    data = []
+
+    budget_accounts = get_budget_accounts(filters.get('budget'))
+    for budget_account in budget_accounts:
+        row = frappe._dict({
+            "account": _(budget_account.account),
+            "indent": 1,
+            "allocated_amount": budget_account.budget_amount,
+            "account_name": _(budget_account.account),
+            "expenses": _(get_expenses(budget_account.account, year_start_date, year_end_date)),
+            "available_amount": _(
+                budget_account.budget_amount - get_expenses(budget_account.account, year_start_date, year_end_date)),
+            "has_value": True,
+            "remarks": _(get_remarks(budget_account.account))
+        })
+
+        data.append(row)
+
+    return data
+
+
+def get_account_budget(accounts, filters, year_start_date, year_end_date, fiscal_year):
+    data = []
+    parents = get_accounts_parents(filters.get('company'))
+    for parent in parents:
+        acc = parent.parent_account
+
+        children = get_accounts_children(filters.get('company'), parent.parent_account)
+        for child in children:
+            has_value = False
+            total = 0
+            row = frappe._dict({
+                "account": _(child.name),
+                "indent": 1,
+                "allocated_amount": child.budget_amount,
+                "account_name": _(child.account_name),
+                "expenses": _(get_expenses(child.name, year_start_date, year_end_date)),
+                "available_amount": _(child.budget_amount - get_expenses(child.name, year_start_date, year_end_date)),
+                "has_value": True,
+                "remarks": _(get_remarks(child.name))
+            })
+
+            data.append(row)
+
+    return data

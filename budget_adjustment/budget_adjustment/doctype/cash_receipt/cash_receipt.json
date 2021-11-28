@@ -48,7 +48,7 @@
    "fieldname": "cash_receipts",
    "fieldtype": "Table",
    "label": "Cash Receipts",
-   "options": "Cash Receipt Item"
+   "options": "Cash Allocation Item"
   },
   {
    "fieldname": "section_break_7",
@@ -89,6 +89,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "company.cost_center",
    "fieldname": "cost_center",
    "fieldtype": "Link",
    "label": "Cost Center",
@@ -128,7 +129,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-09-16 08:20:00.645198",
+ "modified": "2021-11-23 15:26:05.001902",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Cash Receipt",
@@ -143,6 +144,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
    "share": 1,
    "write": 1
   }

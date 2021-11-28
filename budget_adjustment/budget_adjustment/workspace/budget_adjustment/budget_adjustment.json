@@ -1,7 +1,7 @@
 {
  "category": "Modules",
  "charts": [],
- "creation": "2021-09-27 21:33:11.401341",
+ "creation": "2021-11-23 12:44:57.139010",
  "developer_mode_only": 0,
  "disable_user_customization": 0,
  "docstatus": 0,
@@ -26,8 +26,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Cash Receipt",
-   "link_to": "Cash Receipt",
+   "label": "Cash Allocation",
+   "link_to": "Cash Allocation",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -42,7 +42,7 @@
    "type": "Link"
   }
  ],
- "modified": "2021-09-27 22:11:20.653501",
+ "modified": "2021-11-29 03:05:19.193259",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Budget Adjustment",
@@ -58,8 +58,8 @@
   },
   {
    "doc_view": "List",
-   "label": "Cash Receipt",
-   "link_to": "Cash Receipt",
+   "label": "Cash Allocation",
+   "link_to": "Cash Allocation",
    "type": "DocType"
   },
   {
@@ -75,9 +75,9 @@
    "type": "Report"
   },
   {
-   "doc_view": "List",
-   "label": "Budget Rep",
-   "link_to": "Budget Report Accounts",
+   "doc_view": "Report Builder",
+   "label": "Budget Report",
+   "link_to": "Budget  Report",
    "type": "Report"
   }
  ]

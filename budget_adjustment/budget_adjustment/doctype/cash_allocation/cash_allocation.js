@@ -1,6 +1,7 @@
 // Copyright (c) 2021, Chris and contributors
 // For license information, please see license.txt
-frappe.ui.form.on('Cash Receipt', {
+
+frappe.ui.form.on('Cash Allocation', {
 	refresh: function(frm) {
 		if(frm.doc.docstatus == 1){
 
@@ -55,7 +56,7 @@ frappe.ui.form.on('Cash Receipt', {
 			// });
 
 
-			frm.set_query("received_account", "cash_receipts", function() {
+			frm.set_query("received_account", "cash_allocation", function() {
 				return {
                     query: "budget_adjustment.controllers.queries.get_cash_received_accounts",
                     filters: {
@@ -67,8 +68,8 @@ frappe.ui.form.on('Cash Receipt', {
         },
 		budget:function(frm){
 
-					frm.refresh_field('cash_receipts');
-					frm.clear_table("cash_receipts");
+					frm.refresh_field('cash_allocation');
+					frm.clear_table("cash_allocation");
 
 			if(frm.doc.budget) {
 				frappe.call({
@@ -78,34 +79,34 @@ frappe.ui.form.on('Cash Receipt', {
 					callback: function (r) {
 						if (r.message.docstatus != 1) {
 							frappe.throw("The Budget Is Cancelled Budget cannot be loaded");
-							frm.clear_table("cash_receipts");
-							frm.refresh_field('cash_receipts');
+							frm.clear_table("cash_allocation");
+							frm.refresh_field('cash_allocation');
 							frm.refresh_field('budget');
 						} else {
 
 							let b_accounts = r.message.accounts;
 							b_accounts.forEach(b_account => {
-								frm.add_child('cash_receipts', {
+								frm.add_child('cash_allocation', {
 									received_account: b_account.account,
 									previous_budget_amount: b_account.budget_amount
 
 								});
 							});
-							frm.refresh_field('cash_receipts');
+							frm.refresh_field('cash_allocation');
 
 
 						}
 					}
 				});
 			}else{
-					frm.clear_table("cash_receipts");
-					frm.refresh_field('cash_receipts');
+					frm.clear_table("cash_allocation");
+					frm.refresh_field('cash_allocation');
 			}
 
 		},
 	before_save: function(frm){
 		var total = 0;
-		$.each(frm.doc.cash_receipts || [], function(i, d) {
+		$.each(frm.doc.cash_allocation || [], function(i, d) {
 			total += flt(d.amount_received);
 		});
 		frm.set_value("total", total);
@@ -114,7 +115,5 @@ frappe.ui.form.on('Cash Receipt', {
 			frappe.throw("The Received Amount and the total allocated amount should be equal");
 		}
 	}
-
-
 
 });

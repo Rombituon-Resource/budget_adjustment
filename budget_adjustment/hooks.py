@@ -9,47 +9,47 @@ app_color = "blue"
 app_email = "christophernjogu@gmail.com"
 app_license = "MIT"
 
-#fixtures
+# fixtures
 
 fixtures = [
-{
-	"doctype": "Custom Field",
-	"filters": [["name", "in", (
-		"Account-n1",
-		"Account-n2",
-		"Account-n3",
-		"Account-account_numbers_",
-		"Account-column_break_23",
-		"Account-column_break_25",
-		"Budget Account-number_of_changes",
-		"Budget Account-used_amount",
-		"Budget Account-free_balance"
+    {
+        "doctype": "Custom Field",
+        "filters": [["name", "in", (
+            "Account-n1",
+            "Account-n2",
+            "Account-n3",
+            "Account-account_numbers_",
+            "Account-column_break_23",
+            "Account-column_break_25",
+            "Budget Account-number_of_changes",
+            "Budget Account-used_amount",
+            "Budget Account-free_balance"
 
-	)]]
-},
-	{
-	"doctype": "Property Setter",
-	"filters": [["name", "in", (
-		"Account-n1",
-		"Account-n2",
-		"Account-n3",
-		"Account-account_numbers_",
-		"Account-column_break_23",
-		"Account-column_break_25"
-	)]]
-},
-	{
-		"doctype": "Workspace",
-		"filters": [["name", "in", (
-			"Budget Adjustment"
-		)]]
-	},
-	{
-		"doctype": "Report",
-		"filters": [["name", "in", (
-			"Budget Report Accounts"
-		)]]
-	},
+        )]]
+    },
+    {
+        "doctype": "Property Setter",
+        "filters": [["name", "in", (
+            "Account-n1",
+            "Account-n2",
+            "Account-n3",
+            "Account-account_numbers_",
+            "Account-column_break_23",
+            "Account-column_break_25"
+        )]]
+    },
+    {
+        "doctype": "Workspace",
+        "filters": [["name", "in", (
+            "Budget Adjustment"
+        )]]
+    },
+    {
+        "doctype": "Report",
+        "filters": [["name", "in", (
+            "Budget Report Accounts"
+        )]]
+    },
 ]
 
 # Includes in <head>
@@ -75,8 +75,8 @@ fixtures = [
 
 # include js in doctype views
 doctype_js = {
-	"Budget": "public/js/doctype/budget.js"
-	}
+    "Budget": "public/js/doctype/budget.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -126,9 +126,9 @@ doctype_js = {
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+    "Budget": "budget_adjustment.overrides.budget.CustomBudget"
+}
 
 # Document Events
 # ---------------
@@ -143,15 +143,15 @@ doctype_js = {
 # }
 
 doc_events = {
-	"Account": {
-		"on_update": "budget_adjustment.budget_adjustment.doctype.account.events.on_update",
-		"before_submit": "budget_adjustment.budget_adjustment.doctype.account.events.before_submit",
-		"validate": "budget_adjustment.budget_adjustment.doctype.account.events.validate"
-	},
-	"Budget": {
-		"on_change": "budget_adjustment.budget_adjustment.doctype.budget.events.on_change",
-		"on_load": "budget_adjustment.budget_adjustment.doctype.budget.events.on_load"
-	}
+    "Account": {
+        "on_update": "budget_adjustment.budget_adjustment.doctype.account.events.on_update",
+        "before_submit": "budget_adjustment.budget_adjustment.doctype.account.events.before_submit",
+        "validate": "budget_adjustment.budget_adjustment.doctype.account.events.validate"
+    },
+    "Budget": {
+        "on_change": "budget_adjustment.budget_adjustment.doctype.budget.events.on_change",
+        "on_load": "budget_adjustment.budget_adjustment.doctype.budget.events.on_load"
+    }
 }
 
 # Scheduled Tasks
@@ -203,24 +203,24 @@ doc_events = {
 # --------------------
 
 user_data_fields = [
-	{
-		"doctype": "{doctype_1}",
-		"filter_by": "{filter_by}",
-		"redact_fields": ["{field_1}", "{field_2}"],
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_2}",
-		"filter_by": "{filter_by}",
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_3}",
-		"strict": False,
-	},
-	{
-		"doctype": "{doctype_4}"
-	}
+    {
+        "doctype": "{doctype_1}",
+        "filter_by": "{filter_by}",
+        "redact_fields": ["{field_1}", "{field_2}"],
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_2}",
+        "filter_by": "{filter_by}",
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_3}",
+        "strict": False,
+    },
+    {
+        "doctype": "{doctype_4}"
+    }
 ]
 
 # Authentication and authorization
@@ -229,5 +229,3 @@ user_data_fields = [
 # auth_hooks = [
 # 	"budget_adjustment.auth.validate"
 # ]
-
-

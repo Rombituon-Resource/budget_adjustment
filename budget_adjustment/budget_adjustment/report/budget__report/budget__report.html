@@ -1,0 +1,55 @@
+{%
+	var report_columns = report.get_columns_for_print();
+	report_columns = report_columns.filter(col => !col.hidden);
+
+	if (report_columns.length > 8) {
+		frappe.throw(__("Too many columns. Export the report and print it using a spreadsheet application."));
+	}
+%}
+
+<style>
+	.financial-statements-important td {
+		font-weight: bold;
+	}
+
+	.financial-statements-blank-row td {
+		height: 37px;
+	}
+</style>
+
+<h2 class="text-center">{%= __("Budget Report" ) %}</h2>
+<h2 class="text-center">{%= filters.budget %}</h2>
+{% if(! filters.budget) { %}
+	<h2 class="text-center">{%= filters.budget %}</h2>
+{% } %}
+<h3 class="text-center">{%= filters.company %}</h3>
+
+
+<hr>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			{% for(var i=0, l=report.columns.length; i<l; i++) { %}
+				<th style="width: 15%">{%= report.columns[i].label %}</th>
+			{% } %}
+
+		</tr>
+	</thead>
+	<tbody>
+
+		{% for(var i=0, l=data.length; i<l; i++) { %}
+			<tr>
+
+				{% for(var j=0,m=report.columns.length; j<m; j++) { %}
+					<td style="width: 15%">
+							<span style="padding-left: {%= cint(data[i].indent) * 0.5 %}em">
+								{%= data[i][report.columns[j].fieldname] %}
+							</span>
+
+					</td>
+				{% } %}
+
+		</tr>
+		{% } %}
+	</tbody>
+</table>

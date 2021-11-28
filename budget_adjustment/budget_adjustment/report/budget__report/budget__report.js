@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 /* eslint-disable */
 
-frappe.query_reports["Budget Report Accounts"] = {
+frappe.query_reports["Budget  Report"] = {
 	"filters": [
 		{
 			"fieldname":"from_fiscal_year",
@@ -19,6 +19,12 @@ frappe.query_reports["Budget Report Accounts"] = {
 			"options": "Company",
 			"reqd":1,
 			"default":frappe.defaults.get_user_default("Company")
+		},
+		{
+			"fieldname": "budget",
+			"label": __("Budget"),
+			"fieldtype": "Link",
+			"options": "Budget"
 		},
 
 	],
@@ -47,4 +53,5 @@ frappe.query_reports["Budget Report Accounts"] = {
     "name_field": "account",
     "parent_field": "parent_account",
     "initial_depth": 2
+
 };

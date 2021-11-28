@@ -13,6 +13,7 @@ def get_accounts_child(doctype, txt, searchfield, start, page_len, filters):
 			    and tabAccount.company = %(company)s
 			    order by idx desc, name""", {'company': filters.get("company"), 'account': filters.get("account")})
 
+
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def get_cash_received_accounts(doctype, txt, searchfield, start, page_len, filters):
@@ -31,6 +32,7 @@ def get_cash_received_accounts(doctype, txt, searchfield, start, page_len, filte
 			    and a1.company = %(company)s
 			    """, {'company': filters.get("company"), 'account': filters.get("account")})
     return acc
+
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
@@ -63,3 +65,20 @@ def get_used_amount(doctype, txt, searchfield, start, page_len, filters):
 
                         ''', {'account': filters.get("account")})
     return bal
+
+
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def get_budget_name(doctype, txt, searchfield, start, page_len, filters):
+    budget_name = frappe.db.sql(
+        """
+            select 
+                budget_name
+            from `tabBudget` 
+            where 
+                docstatus=1 
+                and company=%(company)s 
+                and cost_center=%(cost_center)s
+        """, {'company': filters.get("company"), 'cost_center': filters.get("cost_center")})
+    #frappe.throw("{0}".format(budget_name))
+    return budget_name

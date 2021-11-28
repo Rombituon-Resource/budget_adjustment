@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestCashReceiptItem(unittest.TestCase):
+class TestCashAllocation(unittest.TestCase):
 	pass
