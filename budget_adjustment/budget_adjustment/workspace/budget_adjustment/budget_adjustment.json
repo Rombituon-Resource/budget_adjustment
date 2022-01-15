@@ -1,7 +1,7 @@
 {
  "category": "Modules",
  "charts": [],
- "creation": "2021-11-23 12:44:57.139010",
+ "creation": "2021-11-29 03:12:37.611928",
  "developer_mode_only": 0,
  "disable_user_customization": 0,
  "docstatus": 0,
@@ -26,8 +26,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Cash Allocation",
-   "link_to": "Cash Allocation",
+   "label": "Cash Receipt",
+   "link_to": "Cash Receipt",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -40,9 +40,18 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cash Allocation",
+   "link_to": "Cash Allocation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2021-11-29 03:05:19.193259",
+ "modified": "2022-01-05 13:58:55.553887",
  "modified_by": "Administrator",
  "module": "Budget Adjustment",
  "name": "Budget Adjustment",
@@ -52,14 +61,15 @@
  "shortcuts": [
   {
    "doc_view": "List",
+   "icon": "accounting",
    "label": "Budget Adjustment",
    "link_to": "Budget Adjustment Of Accounts",
    "type": "DocType"
   },
   {
    "doc_view": "List",
-   "label": "Cash Allocation",
-   "link_to": "Cash Allocation",
+   "label": "Cash Receipt",
+   "link_to": "Cash Receipt",
    "type": "DocType"
   },
   {
@@ -73,6 +83,12 @@
    "label": "Budget Report Consolidated",
    "link_to": "Budget Report Accounts",
    "type": "Report"
+  },
+  {
+   "doc_view": "List",
+   "label": "Cash Allocation",
+   "link_to": "Cash Allocation",
+   "type": "DocType"
   },
   {
    "doc_view": "Report Builder",

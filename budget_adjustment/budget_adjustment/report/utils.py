@@ -250,3 +250,100 @@ def get_account_budget(accounts, filters, year_start_date, year_end_date, fiscal
             data.append(row)
 
     return data
+
+
+def get_budget_accounts_children(company, parent_account, parent):
+    return frappe.db.sql("""
+    		 				select ta.name,tb.account,tb.budget_amount,
+    		 				    ta.account_number, ta.parent_account,
+                                ta.lft, ta.rgt, ta.root_type, ta.report_type,
+                                ta.account_name, ta.include_in_gross,
+                                ta.account_type, ta.is_group, ta.lft, ta.rgt
+                            from `tabAccount` ta, `tabBudget Account` tb
+                                where ta.name = tb.account
+                                and ta.company=%s
+                                and ta.root_type='Expense'
+                                and ta.parent_account=%s
+                                and tb.parent=%s
+                            order by lft	
+                            """, (company, parent_account, parent), as_dict=True)
+
+
+def prepare_data_bg(accounts, filters, year_start_date, year_end_date, fiscal_year, budget):
+    data = []
+
+    parents = get_accounts_parents(filters.get('company'))
+    for parent in parents:
+        has_value = False
+        total = 0
+        acc = parent.parent_account
+        expenses = get_budget_expenses_parents(filters.get('company'), acc, year_start_date, year_end_date, filters.get('budget'))
+        budget = get_as_per_budget_parent(filters.get('company'), acc, fiscal_year.name, filters.get('budget'))
+
+        row = frappe._dict({
+            "account": _(parent.parent_account),
+            "account_name": _(parent.parent_account),
+            "indent": 0,
+            "allocated_amount": _(budget),
+            "expenses": _(expenses),
+            "available_amount": _(budget - expenses),
+            "has_value": True
+        })
+
+        data.append(row)
+
+        children = get_budget_accounts_children(filters.get('company'), parent.parent_account, budget)
+        for child in children:
+            has_value = False
+            total = 0
+            row = frappe._dict({
+                "account": _(child.name),
+                "indent": 1,
+                "allocated_amount": child.budget_amount,
+                "account_name": _(child.account_name),
+                "expenses": _(get_expenses(child.name, year_start_date, year_end_date)),
+                "available_amount": _(child.budget_amount - get_expenses(child.name, year_start_date, year_end_date)),
+                "has_value": True,
+                "remarks": _(get_remarks(child.name))
+            })
+
+            data.append(row)
+
+    return data
+
+
+def get_budget_expenses_parents(company, parent, year_start_date, year_end_date, budget):
+    totals = 0
+    children = get_budget_accounts_children(company, parent, budget)
+    for child in children:
+        accounts = frappe.db.sql(
+            ''' 
+                            select  COALESCE(sum(debit),0) - COALESCE(sum(credit),0) As balance from `tabGL Entry`
+                             where account=%s and posting_date >= %s and posting_date <= %s and is_cancelled = 0
+
+                        ''', (child.name, year_start_date, year_end_date), as_dict=1)
+        if accounts:
+            totals += accounts[0].balance
+        else:
+            totals += 0
+
+    return totals
+
+
+def get_as_per_budget_parent(company, parent, fiscal_year, budget):
+    totals = 0
+    children = get_budget_accounts_children(company, parent, budget)
+    for child in children:
+        accounts = frappe.db.sql(
+            '''
+
+                select ba.budget_amount,b.fiscal_year from `tabBudget Account` ba, `tabBudget` b 
+                    where ba.parent = b.name and b.fiscal_year=%s and ba.account=%s;
+            ''', (fiscal_year, child.name), as_dict=1)
+        if accounts:
+            totals += accounts[0].budget_amount
+        else:
+            totals += 0
+
+    return totals
+

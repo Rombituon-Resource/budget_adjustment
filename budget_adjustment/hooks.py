@@ -47,7 +47,8 @@ fixtures = [
     {
         "doctype": "Report",
         "filters": [["name", "in", (
-            "Budget Report Accounts"
+            "Budget Report Accounts",
+            "Budget Report"
         )]]
     },
 ]

@@ -25,6 +25,21 @@ frappe.query_reports["Budget  Report"] = {
 			"label": __("Budget"),
 			"fieldtype": "Link",
 			"options": "Budget"
+			//  get_data: function(txt) {
+			// 	return frappe.db.get_list('Budget', txt, {
+			// 		company: frappe.query_report.get_filter_value("company")
+			// 	});
+			// }
+			// "get_query" : function(){
+			// 	var company = frappe.query_report_filters_by_name.company.get_value();
+			// 	return{
+			// 		"doctype": "Budget",
+			// 		"filters":{
+			// 			"company":company,
+			// 		}
+			// 	}
+			// }
+
 		},
 
 	],
