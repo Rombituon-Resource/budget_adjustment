@@ -14,7 +14,7 @@ from frappe import _
 from frappe.utils import (flt, getdate, get_first_day, add_months, add_days, formatdate, cstr, cint)
 
 from budget_adjustment.budget_adjustment.report.utils import (filter_accounts, prepare_data, get_accounts,
-                                                              prepare_budget_data,prepare_data_bg)
+                                                              prepare_budget_data,prepare_data_bg, get_budget_accounts, get_budget_accounts_parent)
 
 
 def execute(filters=None):
@@ -28,8 +28,11 @@ def get_data(filters):
     budget = filters.get('budget')
 
     if filters.get('budget'):
-        accounts = get_accounts(filters.get('company'))
+        accounts = get_budget_accounts(filters.get('budget'))
+        # account = get_budget_accounts_parent(filters.get('budget'))
+        # frappe.throw("{0}".format(account))
         data = prepare_data_bg(accounts, filters, year_start_date, year_end_date, fiscal_year,budget)
+
 
         # data = prepare_budget_data(filters, year_start_date, year_end_date)
 

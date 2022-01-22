@@ -197,8 +197,7 @@ def get_budget_accounts(budget):
                                      select account,budget_amount 
                                         from `tabBudget Account` 
                                             where 
-                                            parent=%s;
-    
+                                            parent=%s
                                     """, budget, as_dict=True)
 
     return budget_accounts
@@ -265,24 +264,25 @@ def get_budget_accounts_children(company, parent_account, parent):
                                 and ta.root_type='Expense'
                                 and ta.parent_account=%s
                                 and tb.parent=%s
-                            order by lft	
+                            order by ta.lft	
                             """, (company, parent_account, parent), as_dict=True)
 
 
 def prepare_data_bg(accounts, filters, year_start_date, year_end_date, fiscal_year, budget):
     data = []
 
-    parents = get_accounts_parents(filters.get('company'))
+    parents = get_budget_accounts_parent(filters.get('budget'))
     for parent in parents:
         has_value = False
         total = 0
-        acc = parent.parent_account
-        expenses = get_budget_expenses_parents(filters.get('company'), acc, year_start_date, year_end_date, filters.get('budget'))
+        acc = parent
+        expenses = get_budget_expenses_parents(filters.get('company'), acc, year_start_date, year_end_date,
+                                               filters.get('budget'))
         budget = get_as_per_budget_parent(filters.get('company'), acc, fiscal_year.name, filters.get('budget'))
 
         row = frappe._dict({
-            "account": _(parent.parent_account),
-            "account_name": _(parent.parent_account),
+            "account": _(parent),
+            "account_name": _(parent),
             "indent": 0,
             "allocated_amount": _(budget),
             "expenses": _(expenses),
@@ -292,7 +292,8 @@ def prepare_data_bg(accounts, filters, year_start_date, year_end_date, fiscal_ye
 
         data.append(row)
 
-        children = get_budget_accounts_children(filters.get('company'), parent.parent_account, budget)
+        # children = get_budget_accounts_children(filters.get('company'), acc, budget)
+        children = get_budget_accounts_child(parent, filters.get('budget'))
         for child in children:
             has_value = False
             total = 0
@@ -300,7 +301,7 @@ def prepare_data_bg(accounts, filters, year_start_date, year_end_date, fiscal_ye
                 "account": _(child.name),
                 "indent": 1,
                 "allocated_amount": child.budget_amount,
-                "account_name": _(child.account_name),
+                "account_name": _(child.name),
                 "expenses": _(get_expenses(child.name, year_start_date, year_end_date)),
                 "available_amount": _(child.budget_amount - get_expenses(child.name, year_start_date, year_end_date)),
                 "has_value": True,
@@ -347,3 +348,32 @@ def get_as_per_budget_parent(company, parent, fiscal_year, budget):
 
     return totals
 
+
+def get_budget_accounts_parent(budget):
+    parents = []
+    child_accounts = frappe.db.sql("""
+                                      select account 
+                                         from `tabBudget Account` 
+                                             where 
+                                             parent=%s
+                                     """, budget, as_dict=True)
+    for ca in child_accounts:
+        parent = frappe.db.sql("""
+        		 			  select ta.parent_account from `tabAccount` ta where ta.root_type="Expense" and ta.name = %s 
+                         """, ca.account, as_dict=True)
+        parents.append(parent[0].parent_account)
+
+    unique_parents = list(set(parents))
+
+    return unique_parents
+
+
+def get_budget_accounts_child(parent, budget):
+    return frappe.db.sql("""
+                        select ta.name,tb.account,tb.budget_amount
+                            from `tabAccount` ta, `tabBudget Account` tb
+                                where ta.name = tb.account
+                                and ta.parent_account=%s
+                                and tb.parent=%s
+                            order by ta.lft	
+                            """, (parent,budget), as_dict=True)
